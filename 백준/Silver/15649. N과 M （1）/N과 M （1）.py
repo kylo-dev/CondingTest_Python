@@ -1,20 +1,16 @@
-def dfs():
-    if len(s) == m:
-        print(' '.join(map(str, s)))
-        return
-    
-    for i in range(1, n+1):
-        if visited[i]:
-            continue
-        
-        visited[i] = True
-        s.append(i)
-        dfs()
-        s.pop()
-        visited[i] = False
-    
-    
 n, m = map(int, input().split())
-s = []
-visited = [False] * (n+1)
+
+stk = []
+
+def dfs():
+  if len(stk) == m:
+    print(' '.join(map(str, stk)))
+    return
+
+  for i in range(1, n+1):
+    if i not in stk:
+      stk.append(i)
+      dfs()
+      stk.pop()
+
 dfs()
