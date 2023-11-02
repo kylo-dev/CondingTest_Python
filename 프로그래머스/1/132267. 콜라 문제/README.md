@@ -1,3 +1,9 @@
+# 나의 문제 풀이
+실수로 병(n)을 a개로 나누었을 때 떨어지는 수(remain_bottle)와 a개로 나누었을 때의 몫만 더하는 오류를 범했습니다. 
+
+a개를 줬을 때 b개만큼 곱한 값과 남은 병의 개수를 합하여 a보다 작아질 때까지 반복해서 연산합니다.
+
+---
 # [level 1] 콜라 문제 - 132267 
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/132267) 
