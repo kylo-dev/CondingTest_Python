@@ -1,3 +1,22 @@
+# 나만의 문제풀이
+
+저는 배열의 인덱스를 이용해 name의 위치를 찾은 후 yearning[idx]를 통해 추억 점수들을 계산하였습니다.
+
+다른 풀이 방법으로는 dictionary와 zip 함수를 이용해 name과 yearning을 매핑할 수 있습니다.
+
+```python
+dictionary = dict(zip(name,yearning))
+answer = []
+    for pt in photo:
+        result = 0
+        for p in pt:
+            # dictionary를 통해 좀 더 빠르게 탐색과 조회가 가능
+            if p in dictionary:
+                result += dictionary[p]
+        answer.append(result)
+```
+
+---
 # [level 1] 추억 점수 - 176963 
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/176963) 
