@@ -1,3 +1,31 @@
+# 나의 문제 풀이
+문제를 푸는데 계속 "index of error"가 나서 의문이었다.
+
+```python
+for i in range(len(goal)):
+  if cards1[0] in goal[i]:
+      answer.append(cards1.pop(0))
+  elif cards2[0] in goal[i]:
+      answer.append(cards2.pop(0))
+```
+goal 리스트의 크기만큼 cards1과 cards2의 0번째 위치의 단어를 비교했다.같은 단어인 경우 pop()을 하면서 answer 리스트에 추가하는 로직을 짰는데 에러가 났었다.
+
+여러번 반복을 해 보니까 cards1 이나 cards2에 같은 단어를 제거하여 빈 리스트 상태가 됐을 때에도 조건문을 돌 때 "index of error"가 발생한 것이었다.
+
+에러를 피하기 위해서는 
+
+```python
+for word in goal:
+        if len(cards1) > 0 and cards1[0] == word:
+            answer.append(cards1.pop(0))
+        elif len(cards2) > 0 and cards2[0] == word:
+            answer.append(cards2.pop(0))
+        else:
+            break
+```
+다음과 같이 리스트의 크기를 확인해줘야 한다.
+
+---
 # [level 1] 카드 뭉치 - 159994 
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/159994) 
