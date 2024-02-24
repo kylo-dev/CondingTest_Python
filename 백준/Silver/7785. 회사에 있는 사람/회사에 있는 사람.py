@@ -1,19 +1,18 @@
 import sys
 input = sys.stdin.readline
-
 n = int(input())
 
-dict = {}
+peo = {}
 
 for i in range(n):
-  name, log = input().split()
+  a, b = input().split()
 
-  if log == 'enter':
-        dict[name] = log
+  if b == 'enter':
+    peo[a] = 1
   else:
-    del dict[name]
+    del peo[a]
 
-answer = sorted(dict.keys(), key = lambda x: x, reverse=True)
+peo = sorted(peo, key = lambda x : x, reverse=True)
 
-for i in answer:
+for i in peo:
   print(i)
