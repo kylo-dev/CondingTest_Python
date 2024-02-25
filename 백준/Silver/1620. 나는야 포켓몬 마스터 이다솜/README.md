@@ -1,37 +1,10 @@
-## 나만의 문제풀이
-
-저장한 포켓몬 이름마다 번호를 지정해 주어야 합니다.
-
-문제에서 요구하는 출력값은 포켓몬 이름 입력시 번호 출력 / 해당 번호 입력시 포켓몬 이름 출력 입니다.
-
-이름과 번호를 저장할 자료구조로 배열을 선택하게 되면 탐색하는데 있어 시간 초과가 됩니다.
-
-이를 방지하기 위해 딕셔너리 자료형을 이용하여 탐색할 때 O(1)로 조회해야 합니다.
-
-처음에 딕셔너리의 value 값으로 key을 찾으려고 할 때 value에 해당하는 key 값을 for문을 통해 탐색하여 시간 초과가 발생했습니다.
-
-이를 해결하기 위해 key:value를 뒤집어서 저장하는 추가 딕셔너리를 생성하여 해결할 수 있었습니다.
-
-```python
-# (1) 시간 초과
-for key in dict.keys():
-  if dict[key] == 1:
-    print(key)
-
-# (2) key:value 뒤집어서 두 번째 딕셔너리에 저장하기
-dict2 = {v:k for k,v in dict.items()}
-if qna.isdigit():
-    print(dict2[int(qna)])
-```
-
----
 # [Silver IV] 나는야 포켓몬 마스터 이다솜 - 1620 
 
 [문제 링크](https://www.acmicpc.net/problem/1620) 
 
 ### 성능 요약
 
-메모리: 55968 KB, 시간: 232 ms
+메모리: 51776 KB, 시간: 228 ms
 
 ### 분류
 
@@ -39,7 +12,7 @@ if qna.isdigit():
 
 ### 제출 일자
 
-2023년 12월 29일 23:11:24
+2024년 2월 25일 17:40:55
 
 ### 문제 설명
 
@@ -107,7 +80,7 @@ if qna.isdigit():
 
 <p>이다솜 : 그럼! 일단 사천왕을 이기고 오겠어!</p>
 
-<p><img alt="" src="https://www.acmicpc.net/upload/201004/p8.PNG" style="height:181px; width:274px"></p>
+<p><img alt="" src="" style="height:181px; width:274px"></p>
 
 <p>이다솜 : 여기가 사천왕과 대결하려면 가야하는 곳인가..</p>
 
@@ -127,21 +100,21 @@ if qna.isdigit():
 
 <p>이다솜 : 헐랭... 나를 우습게보네.... 한번 두고 보시지! 그럼 대결이닷!</p>
 
-<p><img alt="" src="https://www.acmicpc.net/upload/201004/pb.PNG" style="height:181px; width:274px"></p>
+<p><img alt="" src="" style="height:181px; width:274px"></p>
 
-<p><img alt="" src="https://www.acmicpc.net/upload/201004/pc.PNG" style="height:183px; width:274px"></p>
+<p><img alt="" src="" style="height:183px; width:274px"></p>
 
-<p><img alt="" src="https://www.acmicpc.net/upload/201004/pd.PNG" style="height:182px; width:274px"></p>
+<p><img alt="" src="" style="height:182px; width:274px"></p>
 
-<p><img alt="" src="https://www.acmicpc.net/upload/201004/pe.PNG" style="height:183px; width:274px"></p>
+<p><img alt="" src="" style="height:183px; width:274px"></p>
 
-<p><img alt="" src="https://www.acmicpc.net/upload/201004/pf.PNG" style="height:183px; width:274px"></p>
+<p><img alt="" src="" style="height:183px; width:274px"></p>
 
-<p><img alt="" src="https://www.acmicpc.net/upload/201004/pg.PNG" style="height:181px; width:274px"></p>
+<p><img alt="" src="" style="height:181px; width:274px"></p>
 
-<p><img alt="" src="https://www.acmicpc.net/upload/201004/ph.PNG" style="height:184px; width:274px"></p>
+<p><img alt="" src="" style="height:184px; width:274px"></p>
 
-<p><img alt="" src="https://www.acmicpc.net/upload/201004/pi.PNG" style="height:184px; width:274px"></p>
+<p><img alt="" src="" style="height:184px; width:274px"></p>
 
 <p>이다솜 : 휴... 이겼다.</p>
 

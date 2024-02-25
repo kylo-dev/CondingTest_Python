@@ -1,18 +1,20 @@
 import sys
 input = sys.stdin.readline
 
-n, m = map(int , input().split())
-dict1 = {}
+n, m = map(int, input().split())
+pocket1 = {}
+pocket2 = {}
 
 for i in range(1, n+1):
-  key = input().rstrip()
-  dict1[key] = i
+  name = input().rstrip()
 
-dict2 = {v:k for k,v in dict1.items()}
+  pocket1[name] = i
+  pocket2[i] = name
 
 for j in range(m):
-  qna = input().rstrip()
-  if qna.isdigit():
-    print(dict2[int(qna)])
+
+  key_name = input().rstrip()
+  if key_name.isdigit():
+    print(pocket2[int(key_name)])
   else:
-    print(dict1[qna])
+    print(pocket1[key_name])
