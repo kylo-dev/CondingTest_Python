@@ -2,15 +2,15 @@ n, m = map(int, input().split())
 
 stk = []
 
-def dfs():
+def back():
   if len(stk) == m:
     print(' '.join(map(str, stk)))
     return
 
-  for i in range(1, n+1):
+  for i in range(1, n + 1):
     if i not in stk:
       stk.append(i)
-      dfs()
+      back()
       stk.pop()
 
-dfs()
+back()
