@@ -1,16 +1,16 @@
 n, m = map(int, input().split())
 
-stk = []
+arr = []
 
 def back():
-  if len(stk) == m:
-    print(' '.join(map(str, stk)))
+  if (len(arr) == m):
+    print(' '.join(map(str, arr)))
     return
 
-  for i in range(1, n + 1):
-    if i not in stk:
-      stk.append(i)
+  for i in range(1, n+1):
+    if i not in arr:
+      arr.append(i)
       back()
-      stk.pop()
-
+      arr.pop()
+    
 back()
