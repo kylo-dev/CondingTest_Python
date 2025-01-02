@@ -2,23 +2,23 @@ import sys
 input = sys.stdin.readline
 
 n, s = map(int, input().split())
-n_list = list(map(int, input().split()))
-cnt = 0
 
-def subset_sum(idx, tol):
-  global cnt
+arr = list(map(int, input().split()))
+result = 0
 
-  if idx >= n:
-      return
+def dfs(idx, sub_sum):
+  global result
 
-  tol += n_list[idx]
+  if idx == n :
+    return
 
-  if tol == s:
-      cnt += 1
-  
-  subset_sum(idx+1, tol)
-  subset_sum(idx+1, tol - n_list[idx])
+  sub_sum += arr[idx]
 
+  if sub_sum == s:
+    result += 1
 
-subset_sum(0,0)
-print(cnt)
+  dfs(idx + 1, sub_sum)
+  dfs(idx + 1, sub_sum - arr[idx])
+
+dfs(0, 0)
+print(result)
