@@ -1,13 +1,12 @@
 n = int(input())
+arr = [int(input()) for _ in range(n)]
+arr.sort()
 
-k = [int(input()) for _ in range(n)]
+result = 0
 
-k.sort()
-
-answers = []
-
-for i in k:
-  answers.append(i*n)
-  n -= 1
-
-print(max(answers))
+for i in range(n):
+  cnt = arr[i] * (len(arr) - i)
+  if cnt > result:
+    result = cnt
+  
+print(result)
