@@ -1,13 +1,14 @@
 import sys
-input  = sys.stdin.readline
+input = sys.stdin.readline
 
-n = int(input())
+N = int(input())
+dp = [[0, []] for _ in range(N+1)]
 
-dp = [[0, []] for _ in range(n+1)]
-dp[1][0] = 0 # 1로 만드는 최소의 개수
-dp[1][1] = [1] # 1로 만들기에 1로 설정
+# [1로 만드는 횟수, 사용한 숫자]
+dp[1][0] = 0
+dp[1][1] = [1]
 
-for i in range(2, n+1):
+for i in range(2, N+1):
   dp[i][0] = dp[i-1][0] + 1
   dp[i][1] = dp[i-1][1] + [i]
 
@@ -16,7 +17,7 @@ for i in range(2, n+1):
     dp[i][1] = dp[i//3][1] + [i]
   if i % 2 == 0 and dp[i//2][0] < dp[i][0]:
     dp[i][0] = dp[i//2][0] + 1
-    dp[i][1] = dp[i//2][1] +[i]
-
-print(dp[n][0])
-print(*reversed(dp[n][1]))
+    dp[i][1] = dp[i//2][1] + [i]
+  
+print(dp[N][0])
+print(' '.join(map(str, reversed(dp[N][1]))))
