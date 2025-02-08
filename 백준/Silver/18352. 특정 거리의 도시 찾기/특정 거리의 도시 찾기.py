@@ -1,30 +1,38 @@
-from collections import deque
 import sys
 input = sys.stdin.readline
+from collections import deque
 
-n, m, k, x = map(int, input().split())
-graph = [[] for _ in range(n + 1)]
+N, M, K, X = map(int, input().split())
+arr = [[] for _ in range(N + 1)]
 
-for _ in range(m):
+for i in range(M):
   a, b = map(int, input().split())
-  graph[a].append(b)
+  arr[a].append(b)
 
-distance = [-1] * (n+1)
-distance[x] = 0
+visited = [False for _ in range(N+1)]
 
-q = deque([x])
+def bfs(start):
+  que = deque([(start, 0)])
+  visited[start] = True
+  ans = []
 
-while q:
-  now = q.popleft()
+  while que:
+    node, dist = que.popleft()
 
-  for next_node in graph[now]:
-    if distance[next_node] == -1:
-      distance[next_node] = distance[now] + 1
-      q.append(next_node)
-  
-if distance.count(k) == 0:
+    if dist == K:
+      ans.append(node)
+
+    if dist < K:
+      for next_node in arr[node]:
+        if not visited[next_node]:
+          que.append((next_node, dist + 1))
+          visited[next_node] = True
+  return ans
+
+result = bfs(X)
+
+if not result:
   print(-1)
 else:
-  for i in range(1, len(distance)):
-    if distance[i] == k:
-      print(i)
+  for i in sorted(result):
+    print(i)
