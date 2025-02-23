@@ -1,13 +1,15 @@
-n = int(input())
-pattern = input()
+N = int(input())
 
-star = pattern.find("*")
-start = pattern[0:star]
+pattern = input()
+star = pattern.index("*")
+
+start = pattern[:star]
 end = pattern[star+1:]
 
-for _ in range(n):
-  ques = input()
-  if len(ques) >= len(start) + len(end) and ques.startswith(start) and ques.endswith(end):
+files = [input() for _ in range(N)]
+
+for file in files:
+  if len(pattern) - 1 <= len(file) and file.startswith(start) and file.endswith(end):
     print("DA")
   else:
     print("NE")
