@@ -1,33 +1,35 @@
 import sys
+sys.setrecursionlimit(10 ** 6)
 input = sys.stdin.readline
 
-sys.setrecursionlimit(10**7)
-t = int(input())
+T = int(input())
 
-def dfs(x, y):
-  if x<0 or x>=n or y<0 or y>=m:
-    return False
-  if graph[x][y] == 1:
-    graph[x][y] = 0
-    dfs(x-1, y)
-    dfs(x, y-1)
-    dfs(x+1, y)
-    dfs(x, y+1)
-    return True
-    
-  return False
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
 
-for i in range(t):
-  cnt = 0
-  n, m, k = map(int, input().split())
-  graph = [[0]*m for _ in range(n)]
-  for j in range(k):
-    t, v = map(int, input().split())
-    graph[t][v] = 1
 
-  for a in range(n):
-    for b in range(m):
-      if dfs(a, b) == True:
-        cnt += 1
-        
-  print(cnt)
+for _ in range(T):
+  M, N, K = map(int, input().split())
+  graph = [[0] * N for _ in range(M)]
+  count = 0
+
+  for i in range(K):
+    a, b = map(int, input().split())
+    graph[a][b] = 1
+  
+  def dfs(x, y):
+    for i in range(4):
+      nx = x + dx[i]
+      ny = y + dy[i]
+
+      if 0 <= nx < M and 0 <= ny < N and graph[nx][ny] == 1:
+        graph[nx][ny] = 0
+        dfs(nx, ny)
+  
+  for i in range(M):
+    for j in range(N):
+      if graph[i][j] == 1:
+        dfs(i, j)
+        count += 1
+  print(count)
+  
