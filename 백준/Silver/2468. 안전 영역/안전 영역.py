@@ -1,51 +1,47 @@
 import sys
-from collections import deque
 input = sys.stdin.readline
+from collections import deque
 
-n = int(input())
-arr = [list(map(int, input().split())) for _ in range(n)]
+N = int(input())
+graph = [list(map(int, input().split())) for _ in range(N)]
+max_height = max(map(max, graph))
 
-answer = []
-
-max_n = 0
-
-for i in arr:
-  max_n = max(max_n, max(i))
-    
 dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
 
-def bfs(x, y, limit):
-  que = deque([(x, y)])
-  visited[x][y] = True
+result = []
 
+def bfs(i, j, limit):
+  que = deque([(i, j)])
+  visited[i][j] = True
+  
   while que:
     x, y = que.popleft()
-    for i in range(4):
-      nx = x + dx[i]
-      ny = y + dy[i]
-      if 0 <= nx < n and 0 <= ny < n:
-        if not visited[nx][ny]:
-          if arr[nx][ny] > limit:
-            visited[nx][ny] = True
-            que.append((nx, ny))
-          else:
-            visited[nx][ny] = True
-
-for i in range(max_n + 1):
-  visited = [[False for _ in range(n)] for _ in range(n)]
-  cnt = 0
-  for x in range(n):
-    for y in range(n):
-      if not visited[x][y]:
-        if arr[x][y] <= i:
-          visited[x][y] = True
+    for k in range(4):
+      nx = x + dx[k]
+      ny = y + dy[k]
+      if 0 <= nx < N and 0 <= ny < N and not visited[nx][ny]:
+        if graph[nx][ny] > limit:
+          visited[nx][ny] = True
+          que.append((nx, ny))
         else:
-          bfs(x, y, i)
-          cnt += 1
-  answer.append(cnt)
+          visited[nx][ny] = True
 
-if len(answer) == 0:
+for limit in range(max_height + 1):
+  visited = [[False] * N for _ in range(N)]
+  cnt = 0
+
+  for i in range(N):
+    for j in range(N):
+      if not visited[i][j]:
+        if graph[i][j] <= limit:
+          visited[i][j] = True
+        else:
+          bfs(i, j, limit)
+          cnt += 1
+  result.append(cnt)
+
+if not len(result):
   print(0)
 else:
-  print(max(answer))
+  print(max(result))
