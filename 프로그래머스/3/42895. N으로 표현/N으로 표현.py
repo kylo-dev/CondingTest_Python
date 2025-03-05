@@ -3,11 +3,9 @@ def solution(N, number):
     if N == number:
         return 1
     
-    answer = -1
-    # 최솟값 = 8
     arr = [set() for _ in range(8)]
     
-    for i in range(len(arr)):
+    for i in range(8):
         arr[i].add(int(str(N) * (i + 1)))
     
     for i in range(1, 8):
@@ -20,7 +18,7 @@ def solution(N, number):
                     if op2 != 0:
                         arr[i].add(op1 // op2)
         if number in arr[i]:
-            answer = i + 1
-            break
+            return i + 1
     
-    return answer
+    return -1
+                    
