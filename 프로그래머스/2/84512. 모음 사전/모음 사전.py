@@ -1,16 +1,17 @@
 def solution(word):
     
-    answer = 0
+    word_list = ['A', 'E', 'I', 'O', 'U']
     words = []
-    word5 = 'AEIOU'
     
-    def dfs(cnt, w):
+    def dfs(w, cnt):
         if cnt == 5:
             return
-        for i in range(len(word5)):
-            wo = w + word5[i]
+        
+        for i in range(5):
+            wo = w + word_list[i]
             words.append(wo)
-            dfs(cnt + 1, wo)
-    dfs(0, "")
+            dfs(wo, cnt+1)
+    
+    dfs('', 0)
     
     return words.index(word) + 1
