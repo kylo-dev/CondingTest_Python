@@ -1,17 +1,8 @@
 def solution(numbers, target):
-    answer = 0
     
-    leaves = [0]
+    def dfs(idx, total):
+        if idx == len(numbers):
+            return 1 if total == target else 0
+        return dfs(idx+1, total + numbers[idx]) + dfs(idx+1, total - numbers[idx])
     
-    for num in numbers:
-        temp = []
-        
-        for l in leaves:
-            temp.append(l + num)
-            temp.append(l - num)
-        
-        leaves = temp
-    return leaves.count(target)
-        
-    
-    return answer
+    return dfs(0, 0)
