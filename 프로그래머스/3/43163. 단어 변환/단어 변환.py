@@ -2,22 +2,21 @@ from collections import deque
 
 def solution(begin, target, words):
     answer = 0
-    visited = [False] * len(words)
-    q = deque([(begin, 0)])
     
-    while q:
-        word, depth = q.popleft()
-        
+    visited = [False] * len(words)
+    que = deque([(begin, 0)])
+    
+    while que:
+        word ,cnt = que.popleft()
         if word == target:
-            return depth
+                return cnt
         
         for i in range(len(words)):
-            if check_word(word, words[i]) and not visited[i]:
+            if check(word, words[i]) and not visited[i]:
                 visited[i] = True
-                q.append((words[i], depth + 1))
-                
+                que.append((words[i], cnt + 1))
     return 0
 
-def check_word(a, b):
-    diff = sum(1 for x, y in zip(a, b) if x != y)
+def check(w1, w2):
+    diff = sum(1 for a, b in zip(w1, w2) if a != b)
     return diff == 1
