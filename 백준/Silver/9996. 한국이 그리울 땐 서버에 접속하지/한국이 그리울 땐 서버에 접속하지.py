@@ -1,15 +1,14 @@
 N = int(input())
-
 pattern = input()
-star = pattern.index("*")
 
-start = pattern[:star]
-end = pattern[star+1:]
+arr = [input() for _ in range(N)]
 
-files = [input() for _ in range(N)]
+star = pattern.find("*")
+prefix = pattern[:star]
+surfix = pattern[star+1:]
 
-for file in files:
-  if len(pattern) - 1 <= len(file) and file.startswith(start) and file.endswith(end):
+for i in arr:
+  if len(pattern) - 1 <= len(i) and i.startswith(prefix) and i.endswith(surfix):
     print("DA")
   else:
     print("NE")
