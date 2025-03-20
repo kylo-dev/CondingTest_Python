@@ -1,17 +1,17 @@
 def solution(word):
-    
-    word_list = ['A', 'E', 'I', 'O', 'U']
+    answer = 0
     words = []
+    moum = "AEIOU"
     
-    def dfs(w, cnt):
+    def dfs(cnt, w):
         if cnt == 5:
             return
         
-        for i in range(5):
-            wo = w + word_list[i]
-            words.append(wo)
-            dfs(wo, cnt+1)
+        for i in range(len(moum)):
+            word = w + moum[i]
+            words.append(word)
+            dfs(cnt + 1, word)
     
-    dfs('', 0)
+    dfs(0, "")
     
     return words.index(word) + 1
