@@ -1,21 +1,21 @@
 import sys
 input = sys.stdin.readline
 
-k, n = map(int, input().split())
-lans = [int(input()) for _ in range(k)]
+K, N = map(int, input().split())
+
+lans = [int(input()) for _ in range(K)]
 
 start, end = 1, max(lans)
 
 while start <= end:
-  mid = (start+end)//2
-  lines = 0
+  cnt = 0
+  mid = (start + end) // 2
 
-  for i in lans:
-    lines += (i//mid)
-
-  if lines >= n:
+  for lan in lans:
+    cnt += lan // mid
+  
+  if cnt >= N:
     start = mid + 1
   else:
     end = mid - 1
-
-print(end)
+print((start+end)//2)
