@@ -1,15 +1,14 @@
 def solution(n, lost, reserve):
-
-    for i in reserve[:]:
-        if i in lost:
-            lost.remove(i)
-            reserve.remove(i)
     
-    for i in sorted(reserve):
-        if i-1 in lost:
-            lost.remove(i-1)
-        elif i+1 in lost:
-            lost.remove(i+1)
-                
-    answer = n - len(lost)
-    return answer
+    for r in reserve[:]:
+        if r in lost:
+            lost.remove(r)
+            reserve.remove(r)
+    
+    for r in sorted(reserve):
+        if r-1 in lost:
+            lost.remove(r-1)
+        elif r+1 in lost:
+            lost.remove(r+1)
+    
+    return n - len(lost)
