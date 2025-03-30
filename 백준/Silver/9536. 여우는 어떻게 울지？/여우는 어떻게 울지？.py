@@ -4,7 +4,7 @@ input = sys.stdin.readline
 T = int(input())
 
 for _ in range(T):
-  all_voice = list(input().rstrip().split())
+  all_voice = list(input().split())
   animal = []
 
   while True:
