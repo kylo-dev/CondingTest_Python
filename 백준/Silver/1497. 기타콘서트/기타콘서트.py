@@ -8,16 +8,17 @@ instruments = set()
 
 for _ in range(N):
   instrument, able = input().split()
-  able = able.replace("Y", "1").replace("N", "0")
-  instruments.add(int(able, 2))
+  able = int(able.replace("Y", "1").replace("N", "0"), 2)
+  if able:
+    instruments.add(able)
 
-instruments -= {0}
 if not instruments:
   print(-1)
   exit()
 
-max_cnt = 0
 target =  (1 << M) - 1
+max_cnt = 0
+answer = N
 
 for i in range(1, N + 1):
   for comb in combinations(instruments, i):
@@ -25,10 +26,9 @@ for i in range(1, N + 1):
     for c in comb:
       result |= c
     
-    sub_ans = target & result
-    cnt = bin(sub_ans).count("1")
+    cnt = bin(result).count("1")
 
-    if max_cnt < cnt:
+    if cnt > max_cnt:
       max_cnt = cnt
       answer = i
 
