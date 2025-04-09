@@ -1,10 +1,13 @@
 def solution(number, k):
-    stack = []
+    answer = []
     
+    # 모든 숫자 문자열 탐색
     for digit in number:
-        while stack and k > 0 and stack[-1] < digit:
-            stack.pop()
+        ### k가 0보다 크고, 배열 마지막 수가 탐색하는 수보다 큰지 확인
+        while answer and k > 0 and answer[-1] < int(digit):
+            answer.pop()
             k -= 1
-        stack.append(digit)
+        ### 아닌 경우, 배열에 숫자 더하기
+        answer.append(int(digit))
     
-    return "".join(stack[:len(number) - k])
+    return "".join(map(str, answer[:len(number) - k]))
