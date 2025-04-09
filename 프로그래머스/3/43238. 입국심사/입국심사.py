@@ -1,15 +1,13 @@
 def solution(n, times):
     
-    left = 1
-    right = max(times) * n
-    answer = 0
+    left, right = 1, max(times) * n
     
     while left <= right:
         mid = (left + right) // 2
-        
         people = 0
+        
         for time in times:
-            people += mid // time
+            people += (mid // time)
             
             if people > n:
                 break
@@ -19,4 +17,5 @@ def solution(n, times):
             answer = mid
         else:
             left = mid + 1
+    
     return answer
