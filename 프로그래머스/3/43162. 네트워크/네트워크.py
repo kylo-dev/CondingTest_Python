@@ -1,8 +1,8 @@
 from collections import deque
 
 def solution(n, computers):
-    visited = [False] * n
     answer = 0
+    visited = [False for _ in range(n)]
     
     for i in range(n):
         if not visited[i]:
@@ -10,9 +10,9 @@ def solution(n, computers):
             visited[i] = True
             answer += 1
         while que:
-            comp = que.popleft()
-            for i in range(n):
-                if not visited[i] and computers[comp][i] == 1:
+            computer = que.popleft()
+            for i in range(len(computers)):
+                if not visited[i] and computers[computer][i]:
                     que.append(i)
                     visited[i] = True
     
