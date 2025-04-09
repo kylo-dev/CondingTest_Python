@@ -1,17 +1,16 @@
 def solution(word):
-    answer = 0
-    words = []
-    moum = "AEIOU"
     
-    def dfs(cnt, w):
-        if cnt == 5:
+    alpha_moum = "AEIOU"
+    moum = []
+    
+    def dfs(word):
+        if len(word) == 5:
             return
         
-        for i in range(len(moum)):
-            word = w + moum[i]
-            words.append(word)
-            dfs(cnt + 1, word)
+        for i in range(len(alpha_moum)):
+            temp_word = word + alpha_moum[i]
+            moum.append(temp_word)
+            dfs(temp_word)
+    dfs('')
     
-    dfs(0, "")
-    
-    return words.index(word) + 1
+    return moum.index(word) + 1
