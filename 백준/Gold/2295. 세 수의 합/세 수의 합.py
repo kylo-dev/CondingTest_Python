@@ -1,24 +1,19 @@
 import sys
 input = sys.stdin.readline
 
-n = int(input())
-u = set()
+N = int(input())
+arr = [int(input()) for _ in range(N)]
+arr.sort()
 
-for i in range(n):
-  u.add(int(input()))
+add_sums = set()
+for i in arr:
+    for j in arr:
+        add_sums.add(i + j)
 
-ab_sums = set()
+def check():
+    for i in range(N-1, -1, -1):
+        for j in range(i + 1):
+            if arr[i] - arr[j] in add_sums:
+                return arr[i]
 
-for i in u:
-  for j in u:
-    ab_sums.add(i+j)
-
-ans = set()
-
-for i in u:
-  for j in u:
-    if (i-j) in ab_sums:
-      ans.add(i)
-
-ans = sorted(list(ans), reverse=True)
-print(ans[0])
+print(check())
