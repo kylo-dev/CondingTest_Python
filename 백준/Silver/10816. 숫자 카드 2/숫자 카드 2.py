@@ -2,21 +2,17 @@ import sys
 input = sys.stdin.readline
 from collections import Counter
 
-n = int(input())
-cards = list(map(int, input().split()))
 
-m = int(input())
-test = list(map(int, input().split()))
+N = int(input())
+card_num = list(map(int, input().split()))
 
-cards = sorted(Counter(cards).items(), key = lambda x : x)
-cards = dict(cards)
+card_count = dict(Counter(card_num))
 
-answer = []
+M = int(input())
+check_num = list(map(int, input().split()))
 
-for i in test:
-  if i in cards:
-    answer.append(cards[i])
-  else:
-    answer.append(0)
-
-print(' '.join(map(str, answer)))
+for check in check_num:
+    if check in card_count:
+        print(card_count[check], end=" ")
+    else:
+        print(0, end=" ")
