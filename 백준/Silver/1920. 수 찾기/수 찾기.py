@@ -1,26 +1,21 @@
 import sys
 input = sys.stdin.readline
+import bisect
 
-n = int(input())
-
+M = int(input())
 arr = list(map(int, input().split()))
 arr.sort()
 
-m = int(input())
-num = list(map(int, input().split()))
+N = int(input())
+check_list = list(map(int, input().split()))
 
-def binary_search(arr, start, end, n):
-  while start <= end:
-    mid = (start + end) // 2
-    if arr[mid] > n:
-      end = mid - 1
-    elif arr[mid] < n:
-      start = mid + 1
-    elif arr[mid] == n:
-      return True
+def is_exist(arr, check):
+    idx = bisect.bisect_left(arr, check)
 
-for i in num:
-  if binary_search(arr, 0, len(arr)-1, i):
-    print(1)
-  else:
-    print(0)
+    if idx < len(arr) and arr[idx] == check:
+        return 1
+    return 0
+
+
+for check in check_list:
+    print(is_exist(arr, check))
