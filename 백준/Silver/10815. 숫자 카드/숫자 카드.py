@@ -1,24 +1,19 @@
 import sys
 input = sys.stdin.readline
+import bisect
 
-n = int(input())
-n_cards = list(map(int, input().split()))
+N = int(input())
+arr = list(map(int, input().split()))
+arr.sort()
 
-n_cards.sort()
+# 가지고 있는지 확인할 카드
+M = int(input())
+check_list = list(map(int, input().split()))
 
-m = int(input())
-m_cards = list(map(int, input().split()))
+for check in check_list:
+    idx = bisect.bisect_left(arr, check)
 
-def binary(arr, target, start , end):
-  while start <= end:
-    mid = (start + end) // 2
-    if arr[mid] == target:
-      return 1
-    elif arr[mid] > target:
-      end = mid - 1
+    if idx < len(arr) and arr[idx] == check:
+        print(1, end=" ")
     else:
-      start = mid + 1
-  return 0
-
-for i in m_cards:
-  print(binary(n_cards,i,0,n-1), end=" ")
+        print(0, end=" ")
