@@ -1,9 +1,12 @@
+from collections import Counter
+
 def solution(nums):
-    answer = 0
     
-    cnt = len(nums) // 2
-    n_set = set(nums)
+    choice = len(nums) // 2
+    num_count = Counter(nums)
     
-    answer = cnt if cnt < len(n_set) else len(n_set)
+    answer = len(num_count) if len(num_count) < choice else choice
     
     return answer
+
+    
