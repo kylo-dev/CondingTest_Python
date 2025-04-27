@@ -1,25 +1,30 @@
+from collections import defaultdict
+
 def solution(genres, plays):
     answer = []
-    total = {} # {'장르': '총 재생 횟수'}
-    gen = {} # {'장르': [(재생 횟수, 고유번호)]}
     
+    genre_dict = defaultdict(list)
     for i in range(len(genres)):
-        total[genres[i]] = total.get(genres[i], 0) + plays[i]
-        if genres[i] not in gen:
-            gen[genres[i]] = [(plays[i], i)]
-        else:
-            gen[genres[i]].append((plays[i], i))
-            
-    total = sorted(total.items(), key = lambda x: -x[1])
-    # gen = sorted(gen.values(), key = lambda x: (-x[0], x[1]))
+        genre_dict[genres[i]].append([plays[i], i])
     
-    for genre, play in total:
+    genre_rank = {}
+    for genre in genre_dict:
+        total = sum([i[0] for i in genre_dict[genre]])
+        genre_rank[genre] = total
+    
+    genre_rank = sorted(genre_rank.items(), key = lambda x: -x[1])
+    
+    for i in range(len(genre_rank)):
         cnt = 0
-        result = sorted(gen[genre], key = lambda x: (-x[0], x[1]))
-        for i in range(len(result)):
+        genre = genre_rank[i][0]
+        
+        rank_list = genre_dict[genre]
+        rank_list.sort(key = lambda x : (-x[0], x[1]))
+        
+        for play, idx in genre_dict[genre]:
             if cnt == 2:
                 break
-            answer.append(result[i][1])
-            cnt += 1
-    
+            else:
+                answer.append(idx)
+                cnt += 1
     return answer
