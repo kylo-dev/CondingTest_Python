@@ -1,26 +1,21 @@
 from collections import deque
+import math
 
 def solution(progresses, speeds):
     answer = []
     
-    days = deque()
+    que = deque(zip(progresses, speeds))
     
-    for i in range(len(progresses)):
-        x = (100 - progresses[i]) / speeds[i]
+    while que:
+        progress, speed = que.popleft()
+        days = math.ceil((100 - progress) / speed)
+        cnt = 1
         
-        if x == int(x):
-            days.append(int(x))
-        else:
-            days.append(int(x + 1))
-    
-    while days:
-        temp = days.popleft()
-        count = 1
+        while que and (que[0][0] + que[0][1] * days) >= 100:
+            cnt += 1
+            que.popleft()
         
-        while days and temp >= days[0]:
-            days.popleft()
-            count += 1
-        answer.append(count)
-        
+        answer.append(cnt)
     
     return answer
+    
