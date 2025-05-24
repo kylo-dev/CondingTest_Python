@@ -1,17 +1,18 @@
 def solution(numbers, target):
     answer = 0
+    N = len(numbers)
     
-    def dfs(idx, values):
+    def dfs(idx, total):
         nonlocal answer
         
-        if idx == len(numbers) and values == target:
+        if idx == N and total == target:
             answer += 1
             return
-        elif idx == len(numbers):
+        elif idx == N:
             return
         
-        dfs(idx + 1, values + numbers[idx])
-        dfs(idx + 1, values - numbers[idx])
+        dfs(idx + 1, total + numbers[idx])
+        dfs(idx + 1, total - numbers[idx])
     
     dfs(0, 0)
     
