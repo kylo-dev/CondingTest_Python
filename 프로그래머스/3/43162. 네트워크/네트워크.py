@@ -2,6 +2,7 @@ from collections import deque
 
 def solution(n, computers):
     answer = 0
+    
     visited = [False for _ in range(n)]
     
     for i in range(n):
@@ -9,11 +10,13 @@ def solution(n, computers):
             que = deque([i])
             visited[i] = True
             answer += 1
+        
         while que:
             computer = que.popleft()
-            for i in range(len(computers)):
-                if not visited[i] and computers[computer][i]:
-                    que.append(i)
-                    visited[i] = True
+            for j in range(n):
+                if not visited[j] and computers[computer][j] == 1:
+                    visited[j] = True
+                    que.append(j)
     
     return answer
+                
