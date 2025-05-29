@@ -4,23 +4,24 @@ input = sys.stdin.readline
 
 N = int(input())
 arr = [list(map(int, input().split())) for _ in range(N)]
-all_team = set([i for i in range(N)])
 answer = float('inf')
 
 def sum_ability(team):
-    sum = 0
+    total = 0
+    
     for comb in combinations(team, 2):
         a, b = comb
-        sum += arr[a][b]
-        sum += arr[b][a]
-    return sum
+        total += arr[a][b] + arr[b][a]
+    return total
 
-for start_team in combinations(all_team, N // 2):
-    link_team = all_team - set(start_team)
+players = [i for i in range(N)]
+for start_team in combinations(players, N // 2):
+    
+    if 0 not in start_team:
+        continue
 
-    start_sum = sum_ability(start_team)
-    link_sum = sum_ability(link_team)
-
-    answer = min(answer, abs(start_sum - link_sum))
+    link_team = [i for i in players if i not in start_team]
+    diff = abs(sum_ability(start_team) - sum_ability(link_team))
+    answer = min(answer, diff)
 
 print(answer)
