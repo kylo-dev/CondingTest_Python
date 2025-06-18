@@ -1,20 +1,18 @@
-import sys, heapq
+import heapq, sys
 input = sys.stdin.readline
 
 N = int(input())
-total = 0
+min_heap = []
+answer = 0
 
-que = []
 for _ in range(N):
-  heapq.heappush(que, int(input()))
+  heapq.heappush(min_heap, int(input()))
 
-if N == 1:
-  print(0)
-else:
-  while len(que) > 1:
-    first = heapq.heappop(que)
-    second = heapq.heappop(que)
-    total += (first + second)
-    heapq.heappush(que, (first + second))
-  
-  print(total)
+while len(min_heap) >= 2:
+  a = heapq.heappop(min_heap)
+  b = heapq.heappop(min_heap)
+  answer += (a + b)
+
+  heapq.heappush(min_heap, a + b)
+
+print(answer)
