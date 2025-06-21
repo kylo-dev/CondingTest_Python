@@ -1,23 +1,24 @@
 def solution(answers):
+    answer = [0, 0, 0]
+    result = []
     
-    student1 = [1, 2, 3, 4, 5] # 5
-    student2 = [2, 1, 2, 3, 2, 4, 2, 5] # 8
-    student3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5] # 10
-    
-    score = [0, 0, 0]
+    std1 = [1, 2, 3, 4, 5]
+    std2 = [2, 1, 2, 3, 2, 4, 2, 5]
+    std3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
     
     for i in range(len(answers)):
-        if answers[i] == student1[i % 5]:
-            score[0] += 1
-        if answers[i] == student2[i % 8]:
-            score[1] += 1
-        if answers[i] == student3[i % 10]:
-            score[2] += 1
+        ans = answers[i]
+        
+        if std1[i % len(std1)] == ans:
+            answer[0] += 1
+        if std2[i % len(std2)] == ans:
+            answer[1] += 1
+        if std3[i % len(std3)] == ans:
+            answer[2] += 1
     
-    answer = []
-    max_score = max(score)
-    for i in range(len(score)):
-        if max_score == score[i]:
-            answer.append(i+1)
+    max_score = max(answer)
+    for i in range(len(answer)):
+        if answer[i] == max_score:
+            result.append(i + 1)
     
-    return answer
+    return result
