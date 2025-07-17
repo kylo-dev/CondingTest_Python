@@ -1,12 +1,14 @@
-n = int(input())
-arr = [int(input()) for _ in range(n)]
+import sys
+input = sys.stdin.readline
+
+N = int(input())
+arr = [int(input()) for _ in range(N)]
+
+answer = 0
 arr.sort()
 
-result = 0
+for i in range(N):
+    cnt = N - i
+    answer = max(answer, cnt * arr[i])
 
-for i in range(n):
-  cnt = arr[i] * (len(arr) - i)
-  if cnt > result:
-    result = cnt
-  
-print(result)
+print(answer)
