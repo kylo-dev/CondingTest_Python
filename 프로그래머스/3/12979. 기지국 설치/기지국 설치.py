@@ -1,4 +1,5 @@
 import math
+
 def solution(n, stations, w):
     answer = 0
     prev_end = 1
@@ -7,14 +8,12 @@ def solution(n, stations, w):
         start = station - w
         end = station + w
         
-        if prev_end < start:
-            diff = start - prev_end
-            answer += math.ceil(diff / (w * 2 + 1))
-        
+        diff = start - prev_end
+        answer += math.ceil(diff / (w * 2 + 1))
         prev_end = end + 1
     
     if prev_end <= n:
         diff = n - prev_end + 1
         answer += math.ceil(diff / (w * 2 + 1))
-
+    
     return answer

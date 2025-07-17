@@ -1,10 +1,10 @@
 # [level 3] 기지국 설치 - 12979 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12979) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12979?gad_source=1&gad_campaignid=22199869887&gbraid=0AAAAAC_c4nCBRuVKK6Fk376z9O5jWUFGB&gclid=Cj0KCQjwm93DBhD_ARIsADR_DjFBe_AxKJITrRH29UVyc04MocYtO_tCFofhPLoKoy2MjMaQMZ0puFEaAmgGEALw_wcB) 
 
 ### 성능 요약
 
-메모리: 9.38 MB, 시간: 2.09 ms
+메모리: 9.63 MB, 시간: 3.74 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2025년 07월 16일 16:14:03
+2025년 07월 17일 12:57:39
 
 ### 문제 설명
 
