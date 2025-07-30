@@ -1,17 +1,19 @@
+import kotlin.math.ceil
+
 fun main() {
-    var input = readln().toInt()
-    var count = IntArray(10) { 0 }
 
-    for (num in input.toString()) {
-        val idx = num.digitToInt()
+    val num = readln().toInt()
 
-        if (idx == 6 || idx == 9) {
-            count[6] += 1
+    val arr = IntArray(9) { 0 }
+
+    for (n in num.toString()) {
+        if (n == '9') {
+            arr[6] += 1
         } else {
-            count[idx] += 1
+            arr[n.digitToInt()] += 1
         }
     }
-    count[6] = (count[6] + 1) / 2
+    arr[6] = ceil(arr[6].toDouble() / 2).toInt()
 
-    println(count.max())
+    println(arr.max())
 }
