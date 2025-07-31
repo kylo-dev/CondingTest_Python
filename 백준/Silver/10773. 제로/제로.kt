@@ -1,14 +1,14 @@
 fun main() {
-  val K = readln().toInt()
-  val arr = mutableListOf<Int>()
+    val K = readln().toInt()
+    val arr = mutableListOf<Int>()
 
-  repeat(K) {
-    var n = readln().toInt()
-    if (n == 0 && !arr.isEmpty()) {
-      arr.removeLast()
-    } else {
-      arr.add(n)
+    for (i in 1..K) {
+        val n = readln().toInt()
+        if (n == 0) {
+            arr.removeLast()
+        } else {
+            arr.add(n)
+        }
     }
-  }
-  println(arr.sum())
+    println(arr.sum())
 }
