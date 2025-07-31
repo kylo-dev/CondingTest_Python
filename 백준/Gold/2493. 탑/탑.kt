@@ -1,16 +1,21 @@
 fun main() {
-    val N = readln().toInt()
+    val n = readln().toInt()
     val arr = readln().split(" ").map { it.toInt() }
-    val answer = IntArray(N)
-    val stack = ArrayList<Int>()
+    val stack = mutableListOf<Int>()
 
-    for (i in N - 1 downTo 0) {
-        while (stack.isNotEmpty() && arr[i] >= arr[stack.last()]) {
-            val idx = stack.removeLast()
-            answer[idx] = i + 1
+    val answer = IntArray(n) { 0 }
+
+    for (i in 0 until n) {
+        while (stack.isNotEmpty()) {
+            if (arr[stack.last()] > arr[i]) {
+                answer[i] = stack.last() + 1
+                break
+            } else {
+                stack.removeLast()
+            }
         }
         stack.add(i)
     }
-
     println(answer.joinToString(" "))
+
 }
