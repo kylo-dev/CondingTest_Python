@@ -1,34 +1,43 @@
+import sys
+input = sys.stdin.readline
 from collections import deque
 
-n, m = map(int, input().split())
-arr = [list(map(int, input().split())) for _ in range(n)]
+N, M = map(int, input().split())
+arr = [list(map(int, input().split())) for _ in range(N)]
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
 
-cnt = 0
-max_sum = 0
+answer = []
+visited = [[False] * M for _ in range(N)]
 
-dx = [0, 0, 1, -1]
-dy = [1, -1, 0, 0]
+def bfs(i, j):
+    que = deque([(i, j)])
+    cnt = 1
+    visited[i][j] = True
 
-def bfs(x, y):
-  que = deque([(x, y)])
-  arr[x][y] = 0
-  max_cnt = 1
-  while que:
-    x, y = que.popleft()
-    for i in range(4):
-      nx = x + dx[i]
-      ny = y + dy[i]
-      if 0 <= nx < n and 0 <= ny < m and arr[nx][ny] == 1:
-        que.append((nx, ny))
-        arr[nx][ny] = 0
-        max_cnt += 1
-  return max_cnt
+    while que:
+        x, y = que.popleft()
+        arr[x][y] = 0
 
-for i in range(n):
-  for j in range(m):
-    if arr[i][j] == 1:
-      cnt += 1
-      max_sum = max(max_sum, bfs(i, j))
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
 
-print(cnt)
-print(max_sum)
+            if 0 <= nx < N and 0 <= ny < M and not visited[nx][ny]:
+                if arr[nx][ny] == 1:
+                    que.append((nx, ny))
+                    visited[nx][ny] = True
+                    cnt += 1
+    return cnt
+
+for i in range(N):
+    for j in range(M):
+        if arr[i][j] == 1:
+            answer.append(bfs(i, j))
+
+if answer:
+    print(len(answer))
+    print(max(answer))
+else:
+    print(0)
+    print(0)
